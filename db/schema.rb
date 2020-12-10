@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_10_191007) do
+ActiveRecord::Schema.define(version: 2020_12_10_210149) do
+
+  create_table "investor_stocks", force: :cascade do |t|
+    t.integer "investor_id"
+    t.integer "stock_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["investor_id"], name: "index_investor_stocks_on_investor_id"
+    t.index ["stock_id"], name: "index_investor_stocks_on_stock_id"
+  end
 
   create_table "investors", force: :cascade do |t|
     t.string "user_name"
@@ -21,6 +30,14 @@ ActiveRecord::Schema.define(version: 2020_12_10_191007) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.string "symbol"
+    t.integer "price"
+    t.integer "volume"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
